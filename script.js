@@ -1,94 +1,93 @@
-const letters_ = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const numbers_ = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-const special_char_ = ["#", "!", "/", "*", "_", ".", "?"];
+const lowercase = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const special_char_ = '#!/*_.?-+;)(<>{}[]|'.split('');
+const numbers_ = '0123456789'.split('');
 
 let passLen = 9;
+let uppercaseEl = false;
+let lowercaseEl = false;
+let numbersEl = false;
+let specialcharEl = false;
 
 function submit() {
     const charactersEl = document.getElementById('number').value;
     const passEl = document.getElementById('pass');
-    let password;
 
-    passLen = charactersEl;
+    uppercaseEl = document.getElementById('uppercase').checked;
+    lowercaseEl = document.getElementById('lowercase').checked;
+    numbersEl = document.getElementById('numbers').checked;
+    specialcharEl = document.getElementById('spec_chars').checked;
+    finalPass = "";
+    if (uppercaseEl || lowercaseEl || numbersEl || specialcharEl) {
+        passLen = charactersEl;
 
-    if (passLen > 10) {
-        passLen = 10;
-    }
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass1 = password;
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass2 = password.toLowerCase();
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass3 = password.toLowerCase();
-
-    randomNumber = Math.floor(Math.random() * numbers_.length);
-    password = numbers_[randomNumber];
-    const pass4 = password;
-
-    randomNumber = Math.floor(Math.random() * numbers_.length);
-    password = numbers_[randomNumber];
-    const pass5 = password;
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass6 = password.toLowerCase();
-
-    randomNumber = Math.floor(Math.random() * numbers_.length);
-    password = numbers_[randomNumber];
-    const pass7 = password;
-
-    randomNumber = Math.floor(Math.random() * special_char_.length);
-    password = special_char_[randomNumber];
-    const pass8 = password;
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass9 = password.toLowerCase();
-
-    randomNumber = Math.floor(Math.random() * numbers_.length);
-    password = numbers_[randomNumber];
-    const pass10 = password;
-
-    randomNumber = Math.floor(Math.random() * letters_.length);
-    password = letters_[randomNumber];
-    const pass11 = password.toLowerCase();
-
-    oldpass = '';
-    for (i = passLen; i > 0; i--) {
-        randomNumber = Math.floor(Math.random() * passLen);
-    
-        if (randomNumber == 0) {
-        finalPass = oldpass + pass1;
-        } else if (randomNumber == 1) {
-            finalPass = oldpass + pass2;
-        } else if (randomNumber == 2) {
-            finalPass = oldpass + pass3;
-        } else if (randomNumber == 3) {
-            finalPass = oldpass + pass4;
-        } else if (randomNumber == 4) {
-            finalPass = oldpass + pass5;
-        } else if (randomNumber == 5) {
-            finalPass = oldpass + pass6;
-        } else if (randomNumber == 6) {
-            finalPass = oldpass + pass7;
-        } else if (randomNumber == 7) {
-            finalPass = oldpass + pass8;
-        } else if (randomNumber == 8) {
-            finalPass = oldpass + pass9;
-        } else if (randomNumber == 9) {
-            finalPass = oldpass + pass10;
-        } else if (randomNumber == 10) {
-            finalPass = oldpass + pass11;
+        if (passLen > 1000) {
+            passLen = 1000;
+        } else if (passLen < 4) {
+            passLen = 4;
         }
+    
+        
+        for (i = 0; i < passLen; i++) {
+            finalPass = finalPass + getRandomChar();
+        }
+    
+        
+    }
+    passEl.innerHTML = finalPass.toString();
+}
 
-        oldpass = finalPass;
+function getRandomChar() {
+    
+    done = false;
+
+    do {
+        rchar = Math.floor(Math.random() * 3 + 0.5);
+
+        switch (rchar) {
+            case 0:
+                if (specialcharEl) {
+                    done = true;
+                }
+                break;
+            case 1:
+                if (numbersEl){
+                    done = true;
+                }
+                break;
+            case 2:
+                if (uppercaseEl) {
+                    done = true;
+                }
+                break;
+            case 3:
+                if (lowercaseEl) {
+                    done = true;
+                }
+                break;
+            default:
+
+        }
+    } while (!done);
+
+    switch (rchar) {
+        case 0:
+            randomNumber = Math.floor(Math.random() * special_char_.length);
+            letter = special_char_[randomNumber];
+            break;
+        case 1:
+            randomNumber = Math.floor(Math.random() * numbers_.length);
+            letter = numbers_[randomNumber];
+            break;
+        case 2:
+            randomNumber = Math.floor(Math.random() * uppercase.length);
+            letter = uppercase[randomNumber];
+            break;
+        case 3:
+            randomNumber = Math.floor(Math.random() * lowercase.length);
+            letter = lowercase[randomNumber];
+            break;
     }
 
-    passEl.innerHTML = finalPass.toString();
+    return letter;
 }
