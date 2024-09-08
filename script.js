@@ -12,6 +12,7 @@ let specialcharEl = false;
 function submit() {
     const charactersEl = document.getElementById('number').value;
     const passEl = document.getElementById('pass');
+    const copyBut = document.getElementById('copy');
 
     uppercaseEl = document.getElementById('uppercase').checked;
     lowercaseEl = document.getElementById('lowercase').checked;
@@ -37,6 +38,7 @@ function submit() {
         
     }
     passEl.innerHTML = finalPass.toString();
+    copyBut.hidden = false;
 }
 
 function getRandomChar() {
