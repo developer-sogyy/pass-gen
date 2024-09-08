@@ -23,8 +23,10 @@ function submit() {
 
         if (passLen > 1000) {
             passLen = 1000;
+            //charactersEl = 1000;
         } else if (passLen < 4) {
             passLen = 4;
+            //charactersEl = "4";
         }
     
         
@@ -91,3 +93,13 @@ function getRandomChar() {
 
     return letter;
 }
+
+function copy() {
+    const pass = document.getElementById("pass");
+
+    stringText = pass.innerHTML;
+
+    navigator.clipboard.writeText(stringText);
+  
+    alert("Copied the text: " + stringText);
+  }

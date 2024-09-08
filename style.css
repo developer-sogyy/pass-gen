@@ -1,25 +1,50 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: lightgray;
+    color: black;
     margin-left: 20px;
 }
 
 #pass {
     font-weight: bold;
+    background-color: white;
 }
 
 input#number {
-    border: 10px wheat;
+    border: 10px darkred;
     border-radius: 3px;
 }
 
-button {
+button#copy {
     border: 2px;
     border-radius: 5px;
-    background-color: bisque;
+    background-color: darkmagenta;
+    color: aliceblue;
+
+    width: 75px;
+    height: 20px;
+}
+
+button#generate {
+    border: 2px;
+    border-radius: 5px;
+    background-color:coral;
+    color: aliceblue;
+
+    width: 75px;
+    height: 20px;
 }
 
 p#passIs {
     font-size: larger;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input.check {
+    border: 5px black;
+    border-radius: 20px;
+}
+
+div#bg {
+    border: 2px white;
+    border-radius: 5px;
 }
