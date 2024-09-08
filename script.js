@@ -10,7 +10,7 @@ let numbersEl = false;
 let specialcharEl = false;
 
 function submit() {
-    const charactersEl = document.getElementById('number').value;
+    const charactersEl = document.getElementById('number');
     const passEl = document.getElementById('pass');
     const copyBut = document.getElementById('copy');
 
@@ -20,14 +20,14 @@ function submit() {
     specialcharEl = document.getElementById('spec_chars').checked;
     finalPass = "";
     if (uppercaseEl || lowercaseEl || numbersEl || specialcharEl) {
-        passLen = charactersEl;
+        passLen = charactersEl.value;
 
         if (passLen > 1000) {
             passLen = 1000;
-            //charactersEl = 1000;
+            charactersEl.value = "1000";
         } else if (passLen < 4) {
             passLen = 4;
-            //charactersEl = "4";
+            charactersEl.value = "4";
         }
     
         
